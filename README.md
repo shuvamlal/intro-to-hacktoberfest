@@ -1,8 +1,10 @@
 # intro-to-hacktoberfest
 This is your starter pack for intro to Open Source world. Let's dive-in with the fun of Hacktoberfest'19.
 
-<hr />
 This is your place to get started with GitHub and Hacktoberfest'19. So, let's dive in it.
+<hr />
+
+![alt text](https://hacktoberfest.digitalocean.com/assets/HF19_social-744d976f227e4aff6866443abcede8c651b309ec9c7c9f7410f5944f8e1299b9.png)
 
 ## What is a pull request?
 Pull requests helps you to let the maintainer of the project know the changes you want to make to their project. Once a pull request (PR) is opened
@@ -15,6 +17,7 @@ Here we are going to create a pr with changes in the file.
   ### Clone the project to your local environment and edit the file (recommended):
   
   FOR THIS YOU NEED GIT INSTALLED IN YOUR LOCAL COMPUTER
+  - First of all click on the fork, top upper right button.
   - Click on "Clone or download" button in your forked repositories page.
   - Copy the web url.
   - Run `git clone CopiedWeburl` in the terminal of your local computer. After cloning is done move inside the cloned folder.
