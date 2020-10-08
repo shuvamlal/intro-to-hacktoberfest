@@ -41,4 +41,4 @@ Here we are going to create a pr with changes in the file.
   - Click on "Create pull request" button and you are done! 
   
   ### Starting Contributors List for all the Open Source Enthusiasts.
-  - In the **Contributors.md**, write your **name** along with the **year** in which you participated.
+  - In the [**CONTRIBUTING.md**](CONTRIBUTING.md), write your **name** along with the **year** in which you participated.
