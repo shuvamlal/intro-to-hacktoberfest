@@ -1,7 +1,7 @@
-# intro-to-hacktoberfest
-This is your starter pack for intro to Open Source world. Let's dive-in with the fun of Hacktoberfest'19.
+# Intro-to-hacktoberfest
+This is your starter pack for intro to Open Source world. Let's dive-in with the fun of Hacktoberfest'20.
 
-This is your place to get started with GitHub and Hacktoberfest'19. So, let's dive in it.
+This is your place to get started with GitHub and Hacktoberfest'20. So, let's dive in it.
 <hr />
 
 ![alt text](https://hacktoberfest.digitalocean.com/assets/HF19_social-744d976f227e4aff6866443abcede8c651b309ec9c7c9f7410f5944f8e1299b9.png)
@@ -39,3 +39,6 @@ Here we are going to create a pr with changes in the file.
   - Now click on "New pull request" button.
   - Type unique_title_name as the title of the pr and your name and email in the description box.
   - Click on "Create pull request" button and you are done! 
+  
+  ### Starting Contributors List for all the Open Source Enthusiasts.
+  - In the **Contributors.md**, write your **name** along with the **year** in which you participated.
