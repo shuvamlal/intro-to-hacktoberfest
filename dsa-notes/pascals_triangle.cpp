@@ -1,5 +1,6 @@
 // C++ code for Pascal's Triangle
 #include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 // See https://www.geeksforgeeks.org/space-and-time-efficient-binomial-coefficient/
