@@ -4,7 +4,7 @@ This is your starter pack for intro to Open Source world. Let's dive-in with the
 This is your place to get started with GitHub and Hacktoberfest'20. So, let's dive in it.
 <hr />
 
-![alt text](https://hacktoberfest.digitalocean.com/assets/HF19_social-744d976f227e4aff6866443abcede8c651b309ec9c7c9f7410f5944f8e1299b9.png)
+![](https://i.ibb.co/4FjRdbH/Logo-Sponsors-Light.png)
 
 ## What is a pull request?
 Pull requests helps you to let the maintainer of the project know the changes you want to make to their project. Once a pull request (PR) is opened
@@ -40,5 +40,5 @@ Here we are going to create a (pull request) pr with changes in the file.
   - Type unique_title_name as the title of the pr and your name and email in the description box.
   - Click on "Create pull request" button and you are done! 
   
-  ### Starting Contributors List for all the Open Source Enthusiasts.
-  - In the **Contributors.md**, write your **name** along with the **year** in which you participated.
+### Starting Contributors List for all the Open Source Enthusiasts.
+- In the [**CONTRIBUTING.md**](CONTRIBUTING.md), write your **name** along with the **year** in which you participated.
