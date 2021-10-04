@@ -1,5 +1,6 @@
 // C++ Program to count islands in boolean 2D matrix
 #include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
 #define ROW 5
