@@ -11,7 +11,7 @@ Pull requests helps you to let the maintainer of the project know the changes yo
 the project owner or the maintainers can review the changes and can merge them to their project or close the pr.
 
 ## How to Create a pull request?
-Here we are going to create a pr with changes in the file.
+Here we are going to create a (pull request) pr with changes in the file.
 - Fork the repository to your GitHub account by clicking on the fork button in the upper right corner of the page.
 - Now there are **two ways for making changes to the file**
   ### Clone the project to your local environment and edit the file (recommended):
