@@ -3,7 +3,7 @@
 // Javascript program for above approach
 
 // N is the size of the 2D matrix N*N
-let N = 9;
+let N = 8;
 
 /* Takes a partially filled-in grid and attempts
 	to assign values to all unassigned locations in
