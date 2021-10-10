@@ -1,0 +1,73 @@
+Problem
+..................
+
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
+You may assume all four edges of the grid are all surrounded by water.
+
+
+
+Examples
+..................
+
+Example 1:
+
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+
+
+Explanation
+....................
+
+Below are the steps to be followed--
+
+1. Check for null and if the first row is empty.
+2. Now traverse through each location. 2D Graph so you need a nested for loop.
+3. Check for the 1, representing the island.
+4. Time to DFS and visit up, down, left and right using DFS.
+5. The grid checker method should take the grid, your row, and your column as a starting point.
+6. After DFS, this is all good now!
+7. Let the DFS do the boundary check and check for water (0).
+8. This is the DFS terminating statement, which when checking other water, allow to go on.
+9. Now we have to set the current row to spot in the matrix as a 0. think "visited".
+10. We don't need a queue or a stack for this graph traversal.
+11. Now, time to check up, down, left and right.
+12. Note that all 4 must terminate with '0' to get to here to add one.
+13. Added to our intial method islands variable.
+
+
+
+Code:
+..................
+
+class Solution {
+public:
+    void dfs(vector<vector<char>>& grid, int i, int j){
+        int n= grid.size();
+        int m= grid[0].size();
+        if(i<0 || i>=n || j<0 || j>=m || grid[i][j]!='1')
+            return;
+        grid[i][j]='0';
+        dfs(grid,i-1,j);
+        dfs(grid,i+1,j);
+        dfs(grid,i,j-1);
+        dfs(grid,i,j+1);
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int n= grid.size();
+        int m= grid[0].size();
+        int res=0;
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                if(grid[i][j]=='1'){
+                    dfs(grid,i,j);
+                    res++;
+                }
+         return res;           
+    }
+};
