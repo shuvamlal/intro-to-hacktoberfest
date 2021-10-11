@@ -1,0 +1,84 @@
+Problem
+........................
+
+You are given an array of strings nums and an integer k. Each string in nums represents an integer without leading zeros.
+Return the string that represents the kth largest integer in nums.
+Note: Duplicate numbers should be counted distinctly. For example, if nums is ["1","2","2"], "2" is the first largest integer,
+"2" is the second-largest integer, and "1" is the third-largest integer.
+
+
+
+Examples
+........................
+
+
+Input: nums = ["2","21","12","1"], k = 3
+Output: "2"
+Explanation:
+The numbers in nums sorted in non-decreasing order are ["1","2","12","21"].
+The 3rd largest integer in nums is "2".
+
+
+Input: nums = ["0","0"], k = 2
+Output: "0"
+Explanation:
+The numbers in nums sorted in non-decreasing order are ["0","0"].
+The 2nd largest integer in nums is "0".
+
+
+Input: nums = ["3","6","7","10"], k = 4
+Output: "3"
+Explanation:
+The numbers in nums sorted in non-decreasing order are ["3","6","7","10"].
+The 4th largest integer in nums is "3".
+
+
+
+
+Code
+..........................
+
+1. Using Sorting (By Using Custom Operator)
+..............................................
+
+class Solution {
+public:
+    
+    string kthLargestNumber(vector<string>& nums, int k) {
+        int n= nums.size();
+        sort(nums.begin(),nums.end(), [](const string& s1, const string& s2){
+            if (s1.length() < s2.length())
+                return false;
+            if (s2.length() < s1.length())
+                return true;
+            else
+                return (s1 > s2);
+        });
+        return nums[k-1];
+    }
+};
+
+
+2. Using Multimap
+........................
+
+class Solution {
+public:
+    string kthLargestNumber(vector<string>& nums, int k) {
+        int n = nums.size();
+        multimap<string, int> mp;
+        for(int i=0;i<n;i++){
+            int x = nums[i].size();
+            mp.insert(make_pair(nums[i],x));
+        }
+        priority_queue<pair<int,string>>p;
+        for(auto it : mp){
+            p.push({it.second,it.first});
+        }
+        while(!p.empty() && k!=1){
+            p.pop(); k--;
+        }
+        return p.top().second;
+    }
+};
+Comments: 0
