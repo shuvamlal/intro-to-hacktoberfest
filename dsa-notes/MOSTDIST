@@ -1,0 +1,116 @@
+//  @rohit	//
+#include <bits/stdc++.h>
+using namespace std;
+
+
+#define ll long long int
+
+
+
+int dist(pair<int, int>& a, pair<int, int>& b) {
+	int dis = 0;
+
+
+	dis = abs(a.first - b.first) + abs(a.second - b.second);
+
+	return dis;
+}
+
+
+
+int main() {
+
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	//freopen("input1.txt", "r", stdin);
+
+	int q;
+	cin >> q;
+
+
+
+	auto cmp1 = [&](auto & a, auto & b) { return a.first + a.second < b.first + b.second ; } ;
+	auto cmp2 = [&](auto & a, auto & b) { return a.first - a.second < b.first - b.second ; } ;
+	auto cmp3 = [&](auto & a, auto & b) { return -a.first + a.second < -b.first + b.second ; } ;
+	auto cmp4 = [&](auto & a, auto & b) { return -a.first - a.second < -b.first - b.second ; } ;
+
+	map<int, pair<int, int> > mp;
+
+	set<pair<int, int>, decltype(cmp1)> s1(cmp1);
+	set<pair<int, int>, decltype(cmp2)> s2(cmp2);
+	set<pair<int, int>, decltype(cmp3)> s3(cmp3);
+	set<pair<int, int>, decltype(cmp4)> s4(cmp4);
+
+	int cnt = 0;
+
+
+	int ans = 0;
+
+	while (q--) {
+		char ch;
+		cin >> ch;
+
+		if (ch == '+') {
+			int x, y;
+			cin >> x >> y;
+
+			x = x ^ ans;
+			y = y ^ ans;
+
+			s1.insert(make_pair(x, y));
+			s2.insert(make_pair(x, y));
+			s3.insert(make_pair(x, y));
+			s4.insert(make_pair(x, y));
+			mp[++cnt] = make_pair(x, y);
+		}
+		else if (ch == '-') {
+			int n;
+			cin >> n;
+
+			n = n ^ ans;
+			s1.erase( mp[n] );
+			s2.erase( mp[n] );
+			s3.erase( mp[n] );
+			s4.erase( mp[n] );
+		}
+		else if (ch == '?') {
+			int x, y;
+			cin >> x >> y;
+
+			x = x ^ ans;
+			y = y ^ ans;
+
+			auto c = make_pair(x, y);
+
+
+
+			auto c1 = *(--s1.end());
+			//cout << "c1 is " << c1.first << " " << c1.second << endl;
+
+			auto c2 = *(--s2.end());
+			//cout << "c2 is " << c2.first << " " << c2.second << endl;
+
+
+			auto c3 = *(--s3.end());
+			//cout << "c3 is " << c3.first << " " << c3.second << endl;
+
+			auto c4 = *(--s4.end());
+			//cout << "c4 is " << c4.first << " " << c4.second << endl;
+
+			int res = 0;
+			res = max(res, dist(c, c1));
+			res = max(res, dist(c, c2));
+			res = max(res, dist(c, c3));
+			res = max(res, dist(c, c4));
+
+			ans = res;
+
+			cout << res << endl;
+
+		}
+
+	}
+
+	return 0;
+}
