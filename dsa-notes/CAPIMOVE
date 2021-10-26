@@ -1,0 +1,68 @@
+//  @rohit	//
+#include <bits/stdc++.h>
+using namespace std;
+
+
+#define ll long long int
+
+
+
+int main() {
+
+	//freopen("input1.txt", "r", stdin);
+
+	int t;
+	cin >> t;
+
+	while (t--) {
+		int n;
+		cin >> n;
+
+		map<int, vector<int> > G;
+
+		int p[n];
+		for (int i = 0; i < n; i++) {
+			cin >> p[i];
+		}
+
+		int u, v;
+		for (int i = 0; i < n - 1; i++) {
+			cin >> u >> v;
+			u -= 1;
+			v -= 1;
+			G[u].push_back(v);
+			G[v].push_back(u);
+		}
+
+
+		auto cmp = [&](int i, int j) { return p[i] < p[j]; };
+		set<int, decltype(cmp)> alive(cmp);
+		for (auto& each : G) {
+			alive.insert(each.first);
+		}
+
+		vector<int> ans(n , n - 1);
+
+		for (auto& each : G) {
+			alive.erase(each.first);
+			for (auto& ng : each.second) {
+				alive.erase(ng);
+			}
+
+			ans[ each.first ] = *(--alive.end()) + 1 ;
+
+			alive.insert(each.first);
+			for (auto& ng : each.second) {
+				alive.insert(ng);
+			}
+
+		}
+
+		for (auto& each : ans)
+			cout << each << " ";
+		cout << endl;
+
+	}
+
+	return 0;
+}
