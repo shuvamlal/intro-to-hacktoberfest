@@ -1,10 +1,10 @@
 # Intro-to-hacktoberfest
-This is your starter pack for intro to Open Source world. Let's dive-in with the fun of Hacktoberfest'20.
+This is your starter pack for intro to Open Source world. Let's dive-in with the fun of Hacktoberfest'21.
 
-This is your place to get started with GitHub and Hacktoberfest'20. So, let's dive in it.
+This is your place to get started with GitHub and Hacktoberfest'21. So, let's dive in it.
 <hr />
 
-![](https://i.ibb.co/4FjRdbH/Logo-Sponsors-Light.png)
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--T__NDHd5--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w0shqntyjc5vyfuyn5bg.png)
 
 ## What is a pull request?
 Pull requests helps you to let the maintainer of the project know the changes you want to make to their project. Once a pull request (PR) is opened
