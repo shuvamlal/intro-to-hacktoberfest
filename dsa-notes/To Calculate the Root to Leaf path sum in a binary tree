@@ -1,0 +1,48 @@
+Problem
+..............
+
+Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf 
+path such that adding up all the values along the path equals targetSum.
+A leaf is a node with no children.
+
+
+Examples
+..............
+
+Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+Output: true
+
+Input: root = [1,2,3], targetSum = 5
+Output: false
+
+Input: root = [1,2], targetSum = 0
+Output: false
+
+
+Solution
+..............
+
+class Solution {
+public:
+    vector<vector<int>> res;
+    void func(TreeNode* root, int sum, int targetSum, vector<int>& ans){
+        if(root==NULL)
+            return;
+        sum+=root->val;
+        ans.push_back(root->val);
+        if(sum==targetSum && root->left==NULL && root->right==NULL){
+            res.push_back(ans);
+        }
+        func(root->left,sum,targetSum,ans);
+        func(root->right,sum,targetSum,ans);
+        ans.pop_back();
+    }
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        int sum=0;
+        vector<int> ans;
+        func(root, sum, targetSum, ans);
+        if(res.size())
+            return true;
+        return false;
+    }
+};
