@@ -1,0 +1,47 @@
+PROBLEM
+.........
+
+Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane, 
+return the maximum number of points that lie on the same straight line.
+
+
+
+EXAMPLES
+..........
+
+Example 1:
+
+Input: points = [[1,1],[2,2],[3,3]]
+Output: 3
+
+Example 2:
+
+Input: points = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
+Output: 4
+
+
+
+SOLUTION
+..........
+
+int maxPoints(vector<vector<int>>& points) {
+        int ans = 0;
+        int n = points.size();
+        if(n < 3)
+            return n;
+        for(int i = 0;i<n;i++){
+            map<pair<int,int>, int> mp;
+            for(int  j = 0;j<n;j++){
+                if(i != j){
+                    int dy = (points[j][1] - points[i][1]);
+                    int dx = (points[j][0] - points[i][0]);
+                    int g = __gcd(dy,dx);
+                    mp[{dy/g,dx/g}]++;
+                }
+            } 
+            for(auto k : mp){
+                ans = max(ans,k.second);
+            }
+        }
+        return ans+1;// extra 1 because it didn't indclue itself.
+    }
