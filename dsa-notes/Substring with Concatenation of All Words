@@ -1,0 +1,87 @@
+Probelm Statement
+----------------------
+You are given a string s and an array of strings words. All the strings of words are of the same length.
+
+A concatenated substring in s is a substring that contains all the strings of any permutation of words concatenated.
+
+For example, if words = ["ab","cd","ef"], then "abcdef", "abefcd", "cdabef", "cdefab", "efabcd", and "efcdab" are all concatenated strings. "acdbef" is not a concatenated substring because it is not the concatenation of any permutation of words.
+Return the starting indices of all the concatenated substrings in s. You can return the answer in any order.
+
+
+Example
+----------
+Input: s = "barfoothefoobarman", words = ["foo","bar"]
+Output: [0,9]
+Explanation: Since words.length == 2 and words[i].length == 3, the concatenated substring has to be of length 6.
+The substring starting at 0 is "barfoo". It is the concatenation of ["bar","foo"] which is a permutation of words.
+The substring starting at 9 is "foobar". It is the concatenation of ["foo","bar"] which is a permutation of words.
+The output order does not matter. Returning [9,0] is fine too.
+
+Approach
+----------
+In this question we've to return all start index of substring in s that form is a concatenation of each word in words
+We solve this question using Sliding window approach and Hashing
+for example:
+s = "barfoothefoobarman", words = ["foo","bar"];
+check "bar" is available in words or not
+We'll stored frequency in freq map
+Then we'll run a from i=0 to s.size()-(mn) because
+s = "barfoothefoobarman", words = ["foo","bar"];
+i=10 then only 3 character left but we've to find 4 character so in this case we run our loop till s.size()-(mn)
+then create a temporary map that store frequency of words we'll erase frequency to that word when we got word
+string substre=s.substr(i+m*j,m); This will give us string that we compare with map with if it is present then we'll erase that word from map or it is not present then we'll break the loop
+if j==n it mean we find n character so we'll push in res vector
+
+
+Solution
+------------
+class Solution 
+{
+public:
+    vector<int> findSubstring(string s, vector<string>& words) 
+    {
+       vector<int> res;
+        int n=words.size();
+        int m=words[0].size();
+        unordered_map<string,int> freq;
+        for(auto i:words)
+        {
+            freq[i]++;
+        }
+        if(s.size()==0||s.size()<n*m)
+        {
+            return res;
+        }
+        for(int i=0;i<=s.size()-(m*n);i++)
+        {
+            unordered_map<string,int> ourfreq=freq;
+            int j;
+            for( j=0;j<n;j++)
+            {
+                
+                string substre=s.substr(i+m*j,m);
+                
+                if(ourfreq[substre]==0)
+                {
+                    break;
+                }
+                else
+                {
+                    ourfreq[substre]--;
+                }
+                
+            }
+            cout<<endl;
+            if(j==n)
+            {
+                res.push_back(i);
+            }
+        }
+        return res;
+    
+        
+    }
+};
+
+
+
