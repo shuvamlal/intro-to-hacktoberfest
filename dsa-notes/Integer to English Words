@@ -1,0 +1,67 @@
+Problem Statement
+------------------------
+Convert a non-negative integer num to its English words representation.
+
+
+Example
+-----------
+Input: num = 123
+Output: "One Hundred Twenty Three"
+
+Approach
+-----------
+The idea here is start from the LSB and tackle them in triplets. Ensure the string representation of each triplet is pushed to a stack for easier concatenation when popped. The advantage of this approach is easy extensibility.
+
+Solution
+-------------
+import java.util.*;
+
+class Solution {
+    
+    String[] tens = new String[] {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};   
+    String[] less20 = new String[] {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+                                   "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"}; 
+    String[] suffixes = new String[] {"", "Thousand", "Million", "Billion"};
+    
+    public String numberToWords(int num) {
+        if (num == 0) return "Zero";
+        Deque<String> dq = new ArrayDeque<>();
+    
+        for (String suf : suffixes) {
+            if (num == 0) break;
+            StringJoiner sj = translateTriplet(num % 1000);
+            if (sj.length() != 0) {
+                if (!suf.isEmpty()) sj.add(suf);
+                dq.push(sj.toString());
+            }
+            num /= 1000;
+        }       
+        StringJoiner sj = new StringJoiner(" ", "", "");        
+        while (!dq.isEmpty()) {
+            sj.add(dq.pop());
+        }
+        return sj.toString();                
+    }
+
+    
+    StringJoiner translateTriplet(int n) {        
+        StringJoiner sj = new StringJoiner(" ", "", "");        
+        if (n > 99) {
+            sj.add(less20[n / 100]);            
+            sj.add("Hundred");
+            n %= 100;
+        }
+        
+        if (n == 0) return sj;
+        if (n < 20) {
+            sj.add(less20[n]);
+        } else {
+            sj.add(tens[n / 10]);
+            if (n % 10 != 0) {
+                sj.add(less20[n % 10]);               
+            }            
+        }
+        return sj;
+    }
+    
+}
