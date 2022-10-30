@@ -1,0 +1,142 @@
+Problem Statement
+------------------
+Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+
+The overall run time complexity should be O(log (m+n)).
+
+ 
+
+Example 1:
+---------------
+Input: nums1 = [1,3], nums2 = [2]
+Output: 2.00000
+Explanation: merged array = [1,2,3] and median is 2.
+
+
+Approach
+----------
+Initution is that given sorted array, you need to skip some elements to reach the median . Now irrespectively how the values are disrubuited in the two arrays, we try move as if they are ordered. Think of it as merging the two arrays into one sorted array and then getting the median.
+
+If the size is odd the median is just 1 element, otherwise the median is avg of 2 elements.
+
+Solution
+--------------
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {        
+        int i=0,j=0;
+        int size=nums1.size()+nums2.size();
+        int skip= size%2==1? size-1:size-2;   //total number of discardered (skipped) elements to filter out the  median 
+        int lskip=skip/2; // number of skips from left hand side to reach median 
+        
+        //case: one of two arrays are empty 
+        if(nums1.size()==0) //answer in nums2
+            if(size%2==1)
+                return nums2[size/2];
+            else return (nums2[size/2] + nums2[size/2 -1] ) /2.0;
+        
+        else if( nums2.size()==0)   //answer in nums1
+           if(size%2==1)
+                return nums1[size/2];
+            else return (nums1[size/2] + nums1[size/2 -1] ) /2.0;
+        
+        
+        if(lskip!=0) //case: Non empty arrays, but No skips needed
+        {
+            //case: Non empty arrays, skips needed
+            //then start skipping elements in order
+            
+                do{
+                if(nums1[i]<nums2[j])
+                {i++;}
+                else {j++;}
+                lskip--;
+
+            }while(i<nums1.size() && j<nums2.size() && lskip!=0);  //skip while you still have elements to skips and both arrays are not finished 
+            
+            //current i and j resemble the number of skips happend. ie (i+j)=total skips. 
+            
+            if(i<nums1.size() && lskip!=0) //remainnig skips in  num1  
+            {
+                i=i+ (lskip)       ;  // update i = i + remainning skips
+
+                if(size%2==1) //odd
+                    return nums1[i];
+                else return (nums1[i]+nums1[i+1])/2.0;
+            }
+           
+            if(j<nums2.size() && lskip!=0) //remainnig skips in num2 
+            {
+                
+                j=j+ (lskip); // update j = j + remainning skips
+                if(size%2==1) //odd
+                    return nums2[j];
+                else return (nums2[j]+nums2[j+1])/2.0;
+            }
+
+        }
+        
+        // No remainnig skips at this point, if reach here then answer is in num1 and/or num2 . 
+        if(j<nums2.size() && i<nums1.size()) //if the two arrays still have not finished , then still vauge where is the answer
+        {
+            
+        
+             if(size%2==1) //odd, ie one number, ie 1 number, just pick the smallest
+                return nums1[i]<nums2[j]? nums1[i]:nums2[j] ; 
+           
+            else //even then we know it will be two numbers. 
+            {  
+			    // at this point we know it will be two numbers. 
+               int s=0; //sum variable 
+                /* but we don't know which is from which
+                ie , possible scenarios are :
+                nums1[i], nums1[i+1]. 
+                nums2[j], nums2[j+1]
+                nums1[i], nums2[j]
+                */
+                
+                //answer is simply the smallest two. so we need to ask twice
+                // get first smaller one, as it will be always be used to cal the median
+                if(nums1[i]<nums2[j]) 
+                {
+                    s=nums1[i]; 
+                    //then get the second smallest in case the array idx isn't out of range  
+                    if(i+1<nums1.size() && nums1[i+1]<nums2[j]) // scenario: i , i+1
+                         s+=nums1[i+1];
+                    else s+=nums2[j]; //scenario: i , j
+                    
+                }
+                else
+                {
+                    s=nums2[j]; 
+                    //then get the second smallest in case the array idx isn't out of range  
+                    if(j+1<nums2.size() && nums2[j+1]<nums1[i]) // scenario: j , j+1
+                         s+=nums2[j+1];
+                    else s+=nums1[i]; //i , j 
+                }
+                
+                //use the sum of the two smallest to cal the median 
+                return s/2.0;  //retutn the avg = sum / 2
+            }
+            
+        }
+        
+        
+        if(j<nums2.size() ) //median in  num2 alone
+        {
+            if(size%2==1) //odd
+                return nums2[j];
+            else return (nums2[j]+nums2[j+1])/2.0;
+        }
+
+        
+        
+        // if(i<nums1.size() )  //if reached here, then median must be in  num1 alone
+        // {
+            if(size%2==1) //odd
+                return nums1[i];
+            else return (nums1[i]+nums1[i+1])/2.0;
+        // }
+        
+    }
+};
