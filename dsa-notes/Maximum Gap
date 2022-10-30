@@ -1,0 +1,53 @@
+Problem Statement
+---------------------
+Given an integer array nums, return the maximum difference between two successive elements in its sorted form. If the array contains less than two elements, return 0.
+
+You must write an algorithm that runs in linear time and uses linear extra space.
+
+Example
+----------
+Input: nums = [3,6,9,1]
+Output: 3
+Explanation: The sorted form of the array is [1,3,6,9], either (3,6) or (6,9) has the maximum difference 3.
+
+Approach
+----------
+1.Brute Force Approach is to sort the array in O(nlogn)
+but we have to do it in linear time.
+
+Solution
+------------
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        int n=nums.size();
+        if(n<2)
+            return 0;
+        int range=0;
+        for(int i=0;i<n;i++)
+        {
+            range=max(range,nums[i]);
+        }
+        vector<int>cnt(range+1,0);
+        for(int i=0;i<n;i++)
+        {
+         cnt[nums[i]]=1;//beacuse if duplicates are there then diff=0 so we can skip it.    
+        }
+        int prev=-1,maxdiff=0;
+        for(int i=0;i<=range;i++)
+        {
+            if(cnt[i])
+            {
+                if(prev!=-1)
+                {
+                 maxdiff=max(maxdiff,i-prev);
+                }
+                prev=i;
+            }
+        }
+        return maxdiff;
+    }
+};
+
+
+
